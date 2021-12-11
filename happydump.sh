@@ -5,5 +5,6 @@ kubectl get pods -o wide --namespace=happydump
 
 
 kubectl get nodes| awk '{print $1}'| grep -wv NAME > ALLNODES.var
-nodearray < ALLNODES.var
-printf '%s' "${nodearray[0]}"
+mapfile < ALLNODES.var
+printf '%s' "${MAPFILE[@]}"
+
