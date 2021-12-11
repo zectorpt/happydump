@@ -6,5 +6,12 @@ kubectl get pods -o wide --namespace=happydump
 
 kubectl get nodes| awk '{print $1}'| grep -wv NAME > ALLNODES.var
 mapfile < ALLNODES.var
-printf '%s' "${MAPFILE[@]}"
+# printf '%s' "${MAPFILE[@]}"
 
+for ((i = 0; i < ${#MAPFILE[@]}; ++i)); do
+    position=$(( $i + 1 ))
+    echo "$position - ${MAPFILE[$i]}"
+done
+
+
+kubectl debug node/${MAPFILE[0]} -it --image=ubuntu --namespace=happydump
