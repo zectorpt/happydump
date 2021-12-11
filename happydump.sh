@@ -12,6 +12,6 @@ for ((i = 0; i < ${#MAPFILE[@]}; ++i)); do
     position=$(( $i + 1 ))
     echo "$position - ${MAPFILE[$i]}"
 done
-
+echo "Please chose the NODE to TCP DUMP"
 
 kubectl debug node/${MAPFILE[0]} -it --image=ubuntu --namespace=happydump
