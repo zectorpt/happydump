@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "First step to the moon! And welcome! ;)"
 kubectl create namespace happydump
+sleep 3
 kubectl get pods -o wide --namespace=happydump
 
 
