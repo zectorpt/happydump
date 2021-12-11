@@ -13,7 +13,7 @@ for ((i = 0; i < ${#MAPFILE[@]}; ++i)); do
     echo "$position - ${MAPFILE[$i]}"
 done
 echo "Please chose the NODE to TCP DUMP"
-
+sleep 5
 kubectl debug node/${MAPFILE[0]} -it --image=ubuntu --namespace=happydump
 
 #kubectl delete namespaces happydump
