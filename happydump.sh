@@ -16,7 +16,9 @@ done
 echo "Please chose the NODE to TCP DUMP"
 sleep 5
 
-kubectl debug node/${MAPFILE[0]} -it --image=ubuntu --namespace=happydump
+#kubectl debug node/${MAPFILE[0]} -it --image=ubuntu --namespace=happydump
+
+kubectl debug node/aks-nodepool4-92987211-vmss000031 -it --image=ubuntu --namespace=happydump
 
 sleep 30
 kubectl delete namespaces happydump
