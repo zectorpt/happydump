@@ -1,6 +1,8 @@
 #!/bin/bash
 echo "First step to the moon! And welcome! ;)"
 kubectl create namespace happydump
+sleep 1
+kubectl create deployment --image=nginx nginxtodelete --namespace=happydump
 sleep 3
 kubectl get pods -o wide --namespace=happydump
 
@@ -14,11 +16,10 @@ for ((i = 0; i < ${#MAPFILE[@]}; ++i)); do
     echo "$position - ${MAPFILE[$i]}"
 done
 echo "Please chose the NODE to TCP DUMP"
-sleep 5
+sleep 3
 
-#kubectl debug node/${MAPFILE[0]} -it --image=ubuntu --namespace=happydump
+kubectl debug node/${MAPFILE[0]} -it --image=ubuntu --namespace=happydump
+#kubectl debug node/aks-nodepool4-92987211-vmss000031 -it --image=ubuntu --namespace=happydump
 
-kubectl debug node/aks-nodepool4-92987211-vmss000031 -it --image=ubuntu --namespace=happydump
-
-sleep 30
+sleep 3
 kubectl delete namespaces happydump
