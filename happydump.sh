@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "First step to the moon! And welcome! ;)"
+wget -q http://www.brainyquote.com/link/quotebr.js -O -|grep -o "\"[A-Z].*\."
 kubectl create namespace happydump
 sleep 1
 kubectl create deployment --image=nginx nginxtodelete --namespace=happydump
