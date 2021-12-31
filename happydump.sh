@@ -12,13 +12,15 @@ mapfile < ALLNODES.var
 # printf '%s' "${MAPFILE[@]}"
 
 for ((i = 0; i < ${#MAPFILE[@]}; ++i)); do
-    position=$(( $i + 1 ))
+    position=$(( $i ))
     echo "$position - ${MAPFILE[$i]}"
 done
-echo "Please chose the NODE to TCP DUMP"
-sleep 3
+echo "Please chose the NODE number to TCP DUMP: "
+sleep 1
+read node
 
-kubectl debug node/${MAPFILE[0]} -it --image=ubuntu --namespace=happydump
+#kubectl debug node/${MAPFILE[0]} -it --image=ubuntu --namespace=happydump
+kubectl debug node/${MAPFILE[$node]} -it --image=ubuntu --namespace=happydump
 #kubectl debug node/aks-nodepool4-92987211-vmss000031 -it --image=ubuntu --namespace=happydump
 
 sleep 3
