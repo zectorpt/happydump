@@ -9,7 +9,6 @@ kubectl get pods -o wide --namespace=happydump
 
 kubectl get nodes| awk '{print $1}'| grep -wv NAME > ALLNODES.var
 mapfile < ALLNODES.var
-# printf '%s' "${MAPFILE[@]}"
 
 for ((i = 0; i < ${#MAPFILE[@]}; ++i)); do
     position=$(( $i ))
@@ -49,9 +48,6 @@ EOF
 echo $DEFINITIONS
 
 sleep 1
-#kubectl debug node/${MAPFILE[0]} -it --image=ubuntu --namespace=happydump
-#kubectl debug node/${MAPFILE[$node]} -it --image=ubuntu --namespace=happydump
-#kubectl debug node/aks-nodepool4-92987211-vmss000031 -it --image=ubuntu --namespace=happydump
 kubectl run --rm --image alpine --overrides="$DEFINITIONS" -ti ${MAPFILE[$node]} --namespace=happydump
 
 rm -f ALLNODES.var
